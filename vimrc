@@ -3,6 +3,7 @@ let mapleader = ","
 
 " Tabs ************************************************************************
 "set sta " a <Tab> in an indent inserts 'shiftwidth' spaces
+set autoread "diable read-only to write warnings
 
 function! Tabstyle_tabs()
   " Using 4 column tabs
@@ -10,17 +11,13 @@ function! Tabstyle_tabs()
   set shiftwidth=4
   set tabstop=4
   set noexpandtab
-  autocmd User Rails set softtabstop=4
-  autocmd User Rails set shiftwidth=4
-  autocmd User Rails set tabstop=4
-  autocmd User Rails set noexpandtab
 endfunction
 
 function! Tabstyle_spaces()
-  " Use 2 spaces
-  set softtabstop=2
-  set shiftwidth=2
-  set tabstop=2
+  " Use 4 spaces
+  set softtabstop=4
+  set shiftwidth=4
+  set tabstop=4
   set expandtab
 endfunction
 
@@ -48,22 +45,25 @@ set incsearch  " Incremental search, search as you type
 set ignorecase " Ignore case when searching 
 set smartcase " Ignore case when searching lowercase
 
-
-" Colors **********************************************************************
-"set t_Co=256 " 256 colors
-set background=dark 
-syntax on " syntax highlighting
+" Colors *****************************************************************
+set background=dark
+syntax on
 colorscheme ir_black
 
-
-" Status Line *****************************************************************
+" Status Line ************************************************************
 set showcmd
-set ruler " Show ruler
-"set ch=2 " Make command line two lines high
+set ruler
 
-" File Stuff ******************************************************************
+" File Specific Syntax Highlighting **************************************
+" When starting to edit a file:
+"   For Java, C, and C++ files set formatting of comments and set
+"   C-indenting on.   For other files switch it off.
+"   Don't change the sequence, it's important that the line with * comes first.
+"if has("autocmd")
+"    autocmd BufRead * set formatoptions=tcql nocindent comments&
+"    autocmd BufRead *.java,*.c,*.cpp,*.h,*.cc,*.cs set formatoptions=ctroq cindent comments=sr:/**,mb:*,elx:*/,sr:/*,mb:*,elx:*/,://
+"endif
 filetype plugin indent on
-" To show current filetype use: set filetype
 
 "autocmd FileType html :set filetype=xhtml
 
@@ -84,13 +84,29 @@ set listchars=trail:.,tab:>-,eol:$
 set nolist
 :noremap <Leader>i :set list!<CR> " Toggle invisible chars
 
-" Misc settings ***************************************************************
+" Hard to type **********************************************************
+imap hh =>
+imap uu _
+imap UU _
+
+" Omni Completion *******************************************************
+autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
+autocmd FileType python set omnifunc=pythoncomplete#Complete
+autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
+autocmd FileType php set omnifunc=phpcomplete#CompletePHP
+autocmd FileType c set omnifunc=ccomplete#Complete
+autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
+autocmd FileType sql set omnifunc=sqlcomplete#Complete
+
+" Misc settings *********************************************************
 set backspace=indent,eol,start
 set number " Show line numbers
 set matchpairs+=<:>
-set vb t_vb= " Turn off bell, this could be more annoying, but I'm not sure how
-set nofoldenable " Turn off folding 
-set autochdir " Automatically change working directory when opening a file
+set guifont=Lucida_Console:h9:cANSI
+set autochdir " Automatically set the current directory when we change files 
+behave mswin
 
 " -----------------------------------------------------------------------------  
 " |                              Plug-ins                                     |
@@ -110,3 +126,9 @@ let g:AutoComplPop_BehaviorKeywordLength = 2
 " railsvim ***************************************************************
 map <Leader>ra :AS<CR>
 map <Leader>rs :RS<CR>
+
+"Shift+Up swaps current line with above line
+nmap <S-Up> ddkP 
+
+"Shift+Down swaps current line with below Line
+nmap <S-Down> ddjP 
