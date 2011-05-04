@@ -46,9 +46,10 @@ set ignorecase " Ignore case when searching
 set smartcase " Ignore case when searching lowercase
 
 " Colors *****************************************************************
-set background=dark
 syntax on
-colorscheme ir_black
+set background=dark
+"colorscheme ir_black
+colorscheme solarized 
 
 " Status Line ************************************************************
 set showcmd
