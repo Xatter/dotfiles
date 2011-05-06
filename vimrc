@@ -128,8 +128,21 @@ let g:AutoComplPop_BehaviorKeywordLength = 2
 map <Leader>ra :AS<CR>
 map <Leader>rs :RS<CR>
 
-"Shift+Up swaps current line with above line
-nmap <S-Up> ddkP 
+" MacVIM shift+arrow-keys behavior (required in .vimrc)
+let macvim_hig_shift_movement = 1
 
-"Shift+Down swaps current line with below Line
+" Bubble line up
+nmap <S-Up> ddkP 
+vmap <S-Up> [egv
+
+" Bubble line down
 nmap <S-Down> ddjP 
+vmap <S-Down> ]egv
+
+
+" Tabs ******************************************************************
+imap <Leader>t <Esc>:tabnew<CR>
+nmap <Leader>t :tabnew<CR>
+nmap <C-Right> :tabn<CR>
+nmap <C-Left> :tabp<CR>
+
