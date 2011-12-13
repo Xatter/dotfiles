@@ -1,3 +1,6 @@
+call pathogen#runtime_append_all_bundles()
+call pathogen#helptags()
+
 set nocompatible
 let mapleader = ","
 
@@ -14,10 +17,10 @@ function! Tabstyle_tabs()
 endfunction
 
 function! Tabstyle_spaces()
-  " Use 4 spaces
-  set softtabstop=4
-  set shiftwidth=4
-  set tabstop=4
+  " Use 2 spaces
+  set softtabstop=2
+  set shiftwidth=2
+  set tabstop=2
   set expandtab
 endfunction
 
@@ -86,9 +89,9 @@ set nolist
 :noremap <Leader>i :set list!<CR> " Toggle invisible chars
 
 " Hard to type **********************************************************
-imap hh =>
-imap uu _
-imap UU _
+"imap hh =>
+"imap uu _
+"imap UU _
 
 " Omni Completion *******************************************************
 autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
@@ -146,3 +149,6 @@ nmap <Leader>t :tabnew<CR>
 nmap <C-Right> :tabn<CR>
 nmap <C-Left> :tabp<CR>
 
+" Tags ******************************************************************
+imap <Leader>l <Esc>:Tlist<CR>
+nmap <Leader>l :Tlist<CR>
