@@ -152,3 +152,8 @@ nmap <C-Left> :tabp<CR>
 " Tags ******************************************************************
 imap <Leader>l <Esc>:Tlist<CR>
 nmap <Leader>l :Tlist<CR>
+
+" Are there machine local settings?
+if filereadable(expand("~/vimrc.local"))
+  source ~/vimrc.local
+endif
