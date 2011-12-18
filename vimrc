@@ -50,7 +50,12 @@ set smartcase " Ignore case when searching lowercase
 
 " Colors *****************************************************************
 syntax on
-set background=dark
+if has('gui_running')
+  set background=light
+else
+  set background=dark
+endif
+
 "colorscheme ir_black
 colorscheme solarized 
 
@@ -94,6 +99,8 @@ set nolist
 "imap UU _
 
 " Omni Completion *******************************************************
+imap <C-j> <C-X><C-O>
+set completeopt=menuone
 autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
 autocmd FileType python set omnifunc=pythoncomplete#Complete
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
@@ -152,6 +159,12 @@ nmap <C-Left> :tabp<CR>
 " Tags ******************************************************************
 imap <Leader>l <Esc>:Tlist<CR>
 nmap <Leader>l :Tlist<CR>
+
+" Folding ***************************************************************
+set foldmethod=indent "fold based on indentation
+set foldnestmax=10    "only 10 levels deep
+set nofoldenable      "don't fold by default
+set foldlevel=1       
 
 " Are there machine local settings?
 if filereadable(expand("~/vimrc.local"))
