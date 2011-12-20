@@ -50,10 +50,24 @@ set smartcase " Ignore case when searching lowercase
 
 " Colors *****************************************************************
 syntax on
+let g:solarized_termcolors=256
+
 if has('gui_running')
   set background=light
 else
   set background=dark
+endif
+
+if $TERM =~ '^xterm'
+  set t_Co=256 
+elseif $TERM =~ '^screen-bce'
+  set t_Co=256            " just guessing
+elseif $TERM =~ '^rxvt'
+  set t_Co=88
+elseif $TERM =~ '^linux'
+  set t_Co=8
+else
+  set t_Co=16
 endif
 
 "colorscheme ir_black
@@ -170,3 +184,5 @@ set foldlevel=1
 if filereadable(expand("~/vimrc.local"))
   source ~/vimrc.local
 endif
+
+
