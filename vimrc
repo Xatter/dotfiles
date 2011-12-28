@@ -50,7 +50,7 @@ set smartcase " Ignore case when searching lowercase
 
 " Colors *****************************************************************
 syntax on
-let g:solarized_termcolors=256
+"let g:solarized_termcolors=256
 
 if has('gui_running')
   set background=light
@@ -138,9 +138,9 @@ behave mswin
 " -----------------------------------------------------------------------------  
 " autocomplpop ***************************************************************
 " complete option
-"set complete=.,w,b,u,t,k
-"let g:AutoComplPop_CompleteOption = '.,w,b,u,t,k'
-"set complete=.
+set complete=.,w,b,u,t,k
+let g:AutoComplPop_CompleteOption = '.,w,b,u,t,k'
+set complete=.
 let g:AutoComplPop_IgnoreCaseOption = 0
 let g:AutoComplPop_BehaviorKeywordLength = 2
 
@@ -185,4 +185,6 @@ if filereadable(expand("~/vimrc.local"))
   source ~/vimrc.local
 endif
 
-
+if &diff
+"  color default
+endif
