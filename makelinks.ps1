@@ -5,9 +5,5 @@ If (-NOT ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdent
     Break
 }
 
-(iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1')))>$null 2>&1
-choco install sudo
-choco install git
-choco install poshgit
-
-.\makelinks.ps1
+cmd /c "mklink /D %HOMEDRIVE%%HOMEPATH%\Documents\WindowsPowerShell $PSScriptRoot\WindowsPowerShell"
+cmd /c "mklink `"%APPDATA%\Sublime Text 3\Packages\User\Preferences.sublime-settings`" `"$PSScriptRoot\Preferences.sublime-settings`""
