@@ -1,4 +1,9 @@
 
+$mypaths = @(
+    "C:\Program Files\Sublime Text 3"
+)
+$env:Path = [string]::Join(";", $mypaths) + ";" + $env:Path
+
 # Load posh-git example profile
 . 'C:\tools\poshgit\dahlbyk-posh-git-869d4c5\profile.example.ps1'
 
